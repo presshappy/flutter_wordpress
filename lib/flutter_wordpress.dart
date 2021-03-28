@@ -143,11 +143,7 @@ class WordPress {
 
       return fetchUser(email: authResponse.userEmail);
     } else {
-      try {
         throw new WordPressError.fromJson(json.decode(response.body));
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
     }
   }
 

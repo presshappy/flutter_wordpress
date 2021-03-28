@@ -143,7 +143,7 @@ class WordPress {
 
       return fetchUser(email: authResponse.userEmail);
     } else {
-        throw new WordPressError.fromJson(json.decode(response.body));
+        throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -160,7 +160,7 @@ class WordPress {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return fetchMeUser();
     } else {
-      throw new WordPressError(message: response.body);
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -187,19 +187,13 @@ class WordPress {
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       final jsonStr = json.decode(response.body);
-      if (jsonStr.length == 0)
-        throw new WordPressError(
-            code: 'wp_empty_list', message: "No users found");
+      if (jsonStr.length == 0){
+        throw WordPressError( code: 'wp_empty_list', message: "No users found");
+      }
 
       return User.fromJson(jsonStr[0]);
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+        throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -212,18 +206,13 @@ class WordPress {
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       final jsonStr = json.decode(response.body);
-      if (jsonStr.length == 0)
-        throw new WordPressError(
-            code: 'wp_empty_user', message: "No user found");
+      if (jsonStr.length == 0){
+        throw WordPressError(code: 'wp_empty_user', message: "No user found");
+      }
+
       return User.fromJson(jsonStr);
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -306,13 +295,7 @@ class WordPress {
 
       return posts;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -422,13 +405,7 @@ class WordPress {
       });
       return pages;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -473,13 +450,7 @@ class WordPress {
       });
       return FetchUsersResult(users, totalUsers);
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -504,13 +475,7 @@ class WordPress {
       });
       return comments;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -542,13 +507,7 @@ class WordPress {
       });
       return commentsHierarchy;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -587,13 +546,7 @@ class WordPress {
 
       return categories;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -617,13 +570,7 @@ class WordPress {
       });
       return tags;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -648,13 +595,7 @@ class WordPress {
       });
       return media;
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -679,13 +620,7 @@ class WordPress {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return Post.fromJson(json.decode(response.body));
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -707,13 +642,7 @@ class WordPress {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return json.decode(response.body);
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 
@@ -737,12 +666,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -769,12 +693,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -798,12 +717,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -826,12 +740,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -861,12 +770,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -888,12 +792,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -920,12 +819,7 @@ class WordPress {
       return true;
     } else {
       response.transform(utf8.decoder).listen((contents) {
-        try {
-          WordPressError err = WordPressError.fromJson(json.decode(contents));
-          throw err;
-        } catch (e) {
-          throw new WordPressError(message: contents);
-        }
+        throw WordPressError.fromJson(json.decode(contents));
       });
     }
   }
@@ -954,13 +848,7 @@ class WordPress {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return Comment.fromJson(json.decode(response.body));
     } else {
-      try {
-        WordPressError err =
-            WordPressError.fromJson(json.decode(response.body));
-        throw err;
-      } catch (e) {
-        throw new WordPressError(message: response.body);
-      }
+      throw WordPressError.fromJson(json.decode(response.body));
     }
   }
 }

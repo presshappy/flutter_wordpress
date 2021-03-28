@@ -182,8 +182,8 @@ class WordPress {
     if (id != null) {
       params['search'] = '$id';
     } else if (email != null)
-      params['search'] = email;
-    else if (username != null) params['search'] = username;
+      params['search'] = Uri.encodeComponent( email );
+    else if (username != null) params['search'] = Uri.encodeComponent( username );
 
     url.write(constructUrlParams(params));
 
